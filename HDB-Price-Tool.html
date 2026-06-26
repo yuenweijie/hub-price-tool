@@ -128,11 +128,15 @@ function setLookupTab(t){document.getElementById('saleSection').style.display=t=
   if(d)d.style.display="none";
 }async function selectRqSuggest(el){
   hideRqSuggest();
-  document.getElementById("rq").value=el.dataset.block;
+  rentalDevView=null;
+  rentalDevBlockFilter=null;
+  document.getElementById("rq").value=el.dataset.block+" "+el.dataset.street;
   document.getElementById("rTown").value=el.dataset.town;
   buildRentalTownFilter();
   await onRentalTownChange();
 }async function onRentalSearchInput(){
+  rentalDevView=null;
+  rentalDevBlockFilter=null;
   const q=document.getElementById("rq").value.trim().toUpperCase();
   const tw=document.getElementById("rTown").value;
   if(q.length>=2&&DATA.length>0){
